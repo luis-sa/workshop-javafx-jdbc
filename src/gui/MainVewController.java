@@ -32,7 +32,7 @@ public class MainVewController implements Initializable {
 	
 	@FXML
 	public void onMenuItemDepartmentAction() {
-		System.out.print("OnMenuAction");
+		loadView("/gui/DepartmentListVBox.fxml");
 	}
 	
 	@FXML
@@ -48,7 +48,9 @@ public class MainVewController implements Initializable {
 		
 	}
 	
-	private void loadView(String absoluteName) {
+	private synchronized void loadView(String absoluteName) {
+		/*A inserção da expressão "synchronized foi feita para impedir que haja qualquer interrupção 
+		 * quando da execução do código de loadView abaixo."*/
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox newVBox = loader.load(); //É um VBox pois estou trabalhando todo meu programa em VBox
